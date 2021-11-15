@@ -36,6 +36,7 @@ do
 		rand_num=$(date +%s%N)
 		#echo "$rand_num"
 		echo "$rand_num" >> "$file_path"
+		echo -en "\b\b\b\b"`echo $filesize*100/$maxsize | bc `'%'
 	fi
 done
 
