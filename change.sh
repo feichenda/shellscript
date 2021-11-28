@@ -7,7 +7,7 @@ if [ $choose -eq 0 ]
 then
 	var=`sed -n '314,314P' Makefile`
 	echo $var
-	sed -i '314s/'"echo $var"'/build_desc := BSJ$(shell date +%g%m%d)A/g' Makefile
+	sed -i '314s/'"$var"'/build_desc := BSJ$(shell date +%g%m%d)A/g' Makefile
 elif [ $choose -eq 1 ]
 then
 	var=`sed -n '314,314P' Makefile`
@@ -24,8 +24,9 @@ then
 	final=$newvar$newch
 	echo $final
 	echo $var
-	#sed -i '314s/'"echo $var"'/'"echo $final"'/' Makefile
-	sed -i 'build_desc := BSJ$(shell date +%g%m%d)/s/'"echo $var"'/'"echo $final"'/' Makefile
+	sed -i '314s/build_desc := BSJ$(shell date +%g%m%d).*/'"$final"'/g' Makefile
+	#sed -i '314{s/'`echo $var`'/'`echo $final`'/}' Makefile
+	#sed -i 'build_desc := BSJ$(shell date +%g%m%d)/s/'"echo $var"'/'"echo $final"'/' Makefile
 else
 	echo "aaa"
 fi
